@@ -1,0 +1,97 @@
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&family=Space+Grotesk:wght@400;500;600;700&display=swap');
+
+:root {
+  /* Backgrounds: Shifted from deep slates to crisp whites and soft grays */
+  --bg-primary: #FFFFFF;         /* Main card/container background */
+  --bg-secondary: #F8FAFC;       /* App background base */
+  --bg-tertiary: #F1F5F9;        /* Subtle offsets, hover states for rows */
+  --border: #E2E8F0;             /* Soft but visible dividers */
+  
+  /* Accents: Slightly darkened for WCAG compliance on light backgrounds */
+  --accent: #2563EB;
+  --accent-hover: #1D4ED8;
+  --accent-glow: rgba(37, 99, 235, 0.25);
+  --accent-glow-soft: rgba(37, 99, 235, 0.08);
+  --accent-light: #DBEAFE;       /* Changed to a soft tint for highlighted backgrounds */
+  
+  /* Status Colors: Adjusted for readability */
+  --success: #16A34A;
+  --success-hover: #15803D;
+  --success-bg: #DCFCE7;         /* Soft green background for success badges */
+  --success-dark: #14532D;       /* Text color inside success badges */
+  --warning: #D97706;
+  --danger: #DC2626;
+  --info: #0284C7;
+  
+  /* Typography: Inverted for light mode */
+  --text-primary: #0F172A;       /* Almost black for primary readability */
+  --text-secondary: #334155;     /* Dark gray for secondary text */
+  --text-muted: #64748B;         /* Mid gray for placeholders/meta text */
+  --text-disabled: #94A3B8;
+  
+  /* Gradients: Brightened up for a fresh look */
+  --gradient-blue: linear-gradient(135deg, #2563EB 0%, #06B6D4 100%);
+  --gradient-elite: linear-gradient(135deg, #F8FAFC 0%, #E2E8F0 100%); /* Clean, premium silver/gray */
+  --gradient-green: linear-gradient(135deg, #16A34A 0%, #22C55E 100%);
+  --gradient-purple: linear-gradient(135deg, #7C3AED 0%, #8B5CF6 100%);
+  --gradient-orange: linear-gradient(135deg, #D97706 0%, #F59E0B 100%);
+  
+  /* Radii remain unchanged */
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  --radius-lg: 16px;
+  --radius-xl: 20px;
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: 'DM Sans', sans-serif;
+  background-color: var(--bg-secondary);
+  /* Subtler radial gradients to give the light background a premium, airy feel */
+  background-image:
+    radial-gradient(circle at 20% 10%, rgba(255, 255, 255, 0.9) 0%, transparent 40%),
+    radial-gradient(circle at 80% 80%, rgba(37, 99, 235, 0.03) 0%, transparent 50%),
+    radial-gradient(circle at 50% 50%, rgba(248, 250, 252, 1) 0%, #F1F5F9 100%);
+  color: var(--text-primary);
+  min-height: 100vh;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Space Grotesk', sans-serif;
+}
+
+/* Scrollbar adjusted for light backgrounds */
+::-webkit-scrollbar { width: 6px; height: 6px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: #CBD5E1; border-radius: 10px; }
+::-webkit-scrollbar-thumb:hover { background: #94A3B8; }
+
+input, select, textarea, button {
+  font-family: 'DM Sans', sans-serif;
+}
+
+button { cursor: pointer; }
+
+input[type="file"] { display: none; }
+
+@keyframes spin { to { transform: rotate(360deg); } }
+@keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+@keyframes slideUp { from { transform: translateY(20px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
+@keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.5; } }
+@keyframes shimmer {
+  0% { background-position: -1000px 0; }
+  100% { background-position: 1000px 0; }
+}
+
+/* Skeleton loader inverted for light mode */
+.skeleton {
+  background: linear-gradient(90deg, #F1F5F9 25%, #E2E8F0 50%, #F1F5F9 75%);
+  background-size: 1000px 100%;
+  animation: shimmer 1.5s infinite;
+  border-radius: var(--radius-md);
+}
