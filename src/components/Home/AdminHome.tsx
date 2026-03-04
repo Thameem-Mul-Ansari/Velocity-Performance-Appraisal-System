@@ -166,9 +166,29 @@ export const AdminHome = () => {
   const actualTeamLeads = employees.filter(e => uniqueTeamLeadIds.has(String(e.employeeId)));
   const regularEmployees = employees.filter(e => !uniqueTeamLeadIds.has(String(e.employeeId)));
 
-  const totalTeams = new Set(employees.filter(e => e.team).map(e => e.team)).size;
-  const salesTeams = new Set(employees.filter(e => getEmpCategory(e) === 'Sales' && e.team).map(e => e.team)).size;
-  const nonSalesTeams = new Set(employees.filter(e => getEmpCategory(e) === 'Non-Sales' && e.team).map(e => e.team)).size;
+  const teamMap = new Map<string, any[]>();
+
+  employees.forEach(emp => {
+    if (!emp.team) return;
+
+    if (!teamMap.has(emp.team)) {
+      teamMap.set(emp.team, []);
+    }
+
+    teamMap.get(emp.team)!.push(emp);
+  });
+
+  const totalTeams = teamMap.size;
+
+  let salesTeams = 0;
+  let nonSalesTeams = 0;
+
+  teamMap.forEach(teamEmployees => {
+    const teamType = getEmpCategory(teamEmployees[0]); // team type based on first employee
+
+    if (teamType === 'Sales') salesTeams++;
+    else nonSalesTeams++;
+  });
 
   // True Team Leads
   const tlTotal = actualTeamLeads.length;
